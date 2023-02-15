@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "719259236347",
+    "project_id": "ukk1-agil",
+    "storage_bucket": "ukk1-agil.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:719259236347:android:1dea84a12c2f4755c63d5e",
+        "android_client_info": {
+          "package_name": "com.example.ukk_revisi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "719259236347-ra53p7rqomqhg8sj3nuaj823vm5sg2j3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAr2lYrAZDeMxgrqdyCeksAIEwogLug9ec"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "719259236347-ra53p7rqomqhg8sj3nuaj823vm5sg2j3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

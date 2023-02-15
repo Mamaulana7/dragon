@@ -1,25 +1,23 @@
-import 'dart:io';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:date_field/date_field.dart';
+import 'package:ukk_revisi/admin/permintaan/permintaan.dart';
+import 'package:ukk_revisi/admin/admin_riwayat/ad_riwayat.dart';
 import 'package:ukk_revisi/navbar.dart';
 import 'package:flutter/services.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:intl/intl.dart';
-import 'package:ukk_revisi/pengunjung/data/baru.dart';
-import 'package:ukk_revisi/pengunjung/riwayat/riwayat.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:io';
 
-class MenuPage extends StatefulWidget {
-  const MenuPage({super.key});
+class AdminPage extends StatefulWidget {
+  const AdminPage({super.key});
 
   @override
-  State<MenuPage> createState() => _MenuPageState();
+  State<AdminPage> createState() => _AdminPageState();
 }
 
-class _MenuPageState extends State<MenuPage> {
-  final User = FirebaseAuth.instance.currentUser!;
-
+class _AdminPageState extends State<AdminPage> {
   @override
   void dispose() {
     SystemChrome.setEnabledSystemUIOverlays(
@@ -28,11 +26,15 @@ class _MenuPageState extends State<MenuPage> {
   }
 
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Color.fromARGB(0, 78, 2, 2),
+    ));
     return DefaultTabController(
       length: 2,
       child: Scaffold(
           drawer: NavBar(),
           appBar: AppBar(
+            iconTheme: IconThemeData(color: Color.fromARGB(255, 0, 0, 0)),
             elevation: 0,
             backgroundColor: Color.fromARGB(255, 188, 251, 255),
             title: Row(
@@ -63,6 +65,7 @@ class _MenuPageState extends State<MenuPage> {
                 ),
               ],
             ),
+            centerTitle: true,
             bottom: TabBar(tabs: [
               Tab(
                 child: Container(
@@ -70,9 +73,8 @@ class _MenuPageState extends State<MenuPage> {
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: Text(
-                    'Riwayat',
+                    'Permintaan',
                     style: TextStyle(
-                      fontWeight: FontWeight.bold,
                       color: Colors.black,
                     ),
                   ),
@@ -84,9 +86,8 @@ class _MenuPageState extends State<MenuPage> {
                     color: Color.fromARGB(0, 255, 255, 255),
                   ),
                   child: Text(
-                    'Baru',
+                    'Riwayat',
                     style: TextStyle(
-                      fontWeight: FontWeight.bold,
                       color: Colors.black,
                     ),
                   ),
@@ -95,7 +96,7 @@ class _MenuPageState extends State<MenuPage> {
             ]),
           ),
           body: TabBarView(
-            children: [RiwayatPage(), BaruPage()],
+            children: [PermintaanPage(), AdminRiwayatPage()],
           )),
     );
   }

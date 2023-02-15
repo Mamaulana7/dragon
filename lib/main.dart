@@ -1,44 +1,37 @@
+import 'package:ukk_revisi/admin/admin.dart';
+import 'package:ukk_revisi/controllers/page_index_controller.dart';
+import 'package:ukk_revisi/login/login.dart';
+import 'package:ukk_revisi/registrasi/register.dart';
+import 'menu.dart';
+import 'package:ukk_revisi/routes/app_pages.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:ukk_revisi/admin/anu.dart';
-import 'package:ukk_revisi/login.dart';
-import 'package:ukk_revisi/menu.dart';
-import 'package:ukk_revisi/profil.dart';
-import 'package:ukk_revisi/register.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:get/instance_manager.dart';
+import 'package:get/route_manager.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'firebase_options.dart';
 
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  await initializeDateFormatting('id_ID', null);
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: LoginPage(),
-      routes: {
-        '/login':(context) => LoginPage(),
-        '/register':(context) => RegisterPage(),
-        '/menu':(context) => MenuPage(),
-        '/anu':(context) => AdminPage(),
-        '/profil':(context) => Profil(),
-      },
-    );
-  }
+  Get.put(PageIndexController(), permanent: true);
+  runApp(StreamBuilder<User?>(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        return GetMaterialApp(
+          title: "Application",
+          debugShowCheckedModeBanner: false,
+          initialRoute: Routes.LOGIN,
+          getPages: AppPages.routes,
+          theme: ThemeData(
+            scaffoldBackgroundColor: Colors.white,
+            fontFamily: 'inter',
+          ),
+        );
+      }));
 }

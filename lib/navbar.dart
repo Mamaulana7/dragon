@@ -1,6 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:ukk_revisi/login.dart';
 
 class NavBar extends StatelessWidget {
   const NavBar({super.key});
@@ -13,33 +14,32 @@ class NavBar extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
-          accountName: Text('Delon',
-          style: GoogleFonts.roboto(
-          fontSize: 25,
-          ),
-          ),
-          accountEmail: Text('Delia@gmail.com',
-          style: GoogleFonts.roboto(
-          fontSize: 15,
-          ),
-          ),
-          currentAccountPicture: CircleAvatar(
-            child: ClipOval(
-              child: Image.asset(
-                'assets/ayang.jpg',
-            width: 90,
-            height: 90,
-            fit: BoxFit.cover,
+            accountName: Text(
+              'user',
+              style: GoogleFonts.roboto(
+                fontSize: 25,
               ),
             ),
+            accountEmail: Text(
+              'Delia@gmail.com',
+              style: GoogleFonts.roboto(
+                fontSize: 15,
+              ),
             ),
-            decoration: BoxDecoration(
-              color: Color.fromARGB(255, 69, 158, 161)
+            currentAccountPicture: CircleAvatar(
+              child: ClipOval(
+                child: Image.asset(
+                  'assets/ayang.jpg',
+                  width: 90,
+                  height: 90,
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
+            decoration: BoxDecoration(color: Color.fromARGB(255, 69, 158, 161)),
           ),
-          
           ListTile(
-            leading: Icon(Icons.people),
+            leading: Icon(Icons.settings),
             title: Text('Profil'),
             onTap: (() {
               Navigator.pushNamed(context, '/profil');
@@ -47,20 +47,27 @@ class NavBar extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.notifications),
-            title: Text('Request'),
+            title: Text('Lapor'),
             onTap: () => null,
           ),
           Divider(
             color: Colors.grey[600],
           ),
           ListTile(
-            leading: Icon(Icons.exit_to_app),
-            title: Text('Exit'),
-            onTap: () {
-              Navigator.pushNamed(context, '/login');
-            }
-          ),
-
+              leading: Icon(Icons.exit_to_app),
+              title: Text('Exit'),
+              onTap: () {
+                Get.defaultDialog(
+                  backgroundColor: Colors.white,
+                  title: "Ingin Keluar",
+                  middleText: "Apakah anda yakin ?",
+                  onConfirm: () async {
+                    Navigator.pushNamed(context, '/login');
+                  },
+                  textConfirm: "Iya",
+                  textCancel: "Tidak",
+                );
+              }),
           Row(
             children: [
               Container(
@@ -70,16 +77,14 @@ class NavBar extends StatelessWidget {
               ),
               Container(
                 margin: EdgeInsets.only(top: 260),
-                padding: EdgeInsets.only( top: 5),
+                padding: EdgeInsets.only(top: 5),
                 decoration: BoxDecoration(
                   color: Color.fromARGB(0, 69, 123, 160),
-                  
                 ),
                 height: 30,
-                child: Text('Copyrigth-2023',
-                style: GoogleFonts.openSans(
-                  fontSize: 15
-                ),
+                child: Text(
+                  'Copyrigth-2023',
+                  style: GoogleFonts.openSans(fontSize: 15),
                 ),
               ),
             ],

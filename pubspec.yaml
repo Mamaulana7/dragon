@@ -40,10 +40,17 @@ dependencies:
   date_field: ^3.0.2
   dropdown_button2: ^1.9.2
   flutter_awesome_buttons: ^1.1.0
-  image: ^4.0.8
-  image_picker: ^0.8.6
+  flutter_svg: 1.0.3
+  image_picker: ^0.8.6+1
   firebase_core: ^2.4.1
-  
+  firebase_auth: ^4.2.5
+  firebase_database: ^10.0.9
+  firebase_storage: ^11.0.6
+  get: ^4.6.5
+  cloud_firestore: ^4.3.1
+  path_provider: ^2.0.11
+  intl: ^0.17.0
+  uuid: ^3.0.7
 
 dev_dependencies:
   flutter_test:
