@@ -178,28 +178,27 @@ class _PermintaanPageState extends State<PermintaanPage> {
                               ),
                               child: Row(
                                 children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      // controller.
-                                    },
-                                    child: Container(
-                                      padding: EdgeInsets.only(
-                                        top: 5,
-                                      ),
-                                      margin: EdgeInsets.only(
-                                        left: 55,
-                                      ),
-                                      width: 170,
+                                  Obx(
+                                    () => Container(
+                                      margin: EdgeInsets.only(left: 20),
+                                      width: 190,
                                       height: 30,
-                                      color: Color.fromARGB(0, 33, 149, 243),
-                                      child: Text(
-                                        'Terima',
-                                        textAlign: TextAlign.center,
-                                        style: GoogleFonts.secularOne(
-                                          textStyle: TextStyle(
-                                            color:
-                                                Color.fromARGB(255, 17, 179, 2),
-                                            fontSize: 17,
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Color.fromARGB(
+                                                253, 20, 161, 243)),
+                                        onPressed: () {
+                                          if (controller.isLoading.isFalse) {
+                                            controller.tolak();
+                                          }
+                                        },
+                                        child: Text(
+                                          (controller.isLoading.isFalse)
+                                              ? 'Terima'
+                                              : 'Loading...',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontFamily: 'poppins',
                                           ),
                                         ),
                                       ),
@@ -208,24 +207,26 @@ class _PermintaanPageState extends State<PermintaanPage> {
                                   SizedBox(
                                     width: 1,
                                   ),
-                                  GestureDetector(
-                                    onTap: () {},
-                                    child: Container(
-                                      padding: EdgeInsets.only(
-                                        top: 5,
-                                      ),
-                                      width: 165,
-                                      height: 30,
-                                      color: Color.fromARGB(0, 33, 149, 243),
+                                  Obx(
+                                    () => ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                          padding: EdgeInsets.only(left: 5),
+                                          primary: Color.fromARGB(
+                                              253, 20, 161, 243)),
+                                      onPressed: () {
+                                        if (controller.isLoading.isFalse) {
+                                          controller.terima();
+                                        }
+                                      },
                                       child: Text(
-                                        'Tolak',
-                                        textAlign: TextAlign.center,
-                                        style: GoogleFonts.secularOne(
-                                          textStyle: TextStyle(
-                                            color:
-                                                Color.fromARGB(255, 199, 3, 3),
-                                            fontSize: 17,
-                                          ),
+                                        (controller.isLoading.isFalse)
+                                            ? 'Tolak'
+                                            : 'Loading...',
+                                        style: TextStyle(
+                                          color: Color.fromARGB(
+                                              255, 255, 255, 255),
+                                          fontSize: 16,
+                                          fontFamily: 'poppins',
                                         ),
                                       ),
                                     ),
@@ -251,3 +252,15 @@ class _PermintaanPageState extends State<PermintaanPage> {
     );
   }
 }
+
+// Text(
+//                                         'Terima',
+//                                         textAlign: TextAlign.center,
+//                                         style: GoogleFonts.secularOne(
+//                                           textStyle: TextStyle(
+//                                             color:
+//                                                 Color.fromARGB(255, 17, 179, 2),
+//                                             fontSize: 17,
+//                                           ),
+//                                         ),
+//                                       ),

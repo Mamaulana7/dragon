@@ -22,10 +22,6 @@ class _RiwayatPageState extends State<RiwayatPage> {
   TextEditingController _dataC = TextEditingController();
   TextEditingController _suhuC = TextEditingController();
 
-  static List<riwayatfilter> listriwayat = [
-    riwayatfilter("ahmad", "sal", "suhu")
-  ];
-
   final controller = Get.find<RiwayatController>();
 
   @override
@@ -177,6 +173,22 @@ class _RiwayatPageState extends State<RiwayatPage> {
                                         fontSize: 15,
                                       ),
                                     ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(left: 156, top: 9),
+                                    child: Text(""
+                                        // (carddata["status"] == 0)
+                                        // ? "Status : Belum dibaca"
+                                        // : (carddata["status"] == 1)
+                                        //     ? "Status : Diterima"
+                                        //     : "Status : Ditolak",
+                                        //   style: GoogleFonts.secularOne(
+                                        //     textStyle: TextStyle(
+                                        //       color: Color.fromARGB(255, 0, 0, 0),
+                                        //       fontSize: 20,
+                                        //     ),
+                                        //   ),
+                                        ),
                                   ),
                                 ],
                               ),
