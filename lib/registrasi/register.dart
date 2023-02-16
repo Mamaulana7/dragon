@@ -197,7 +197,7 @@ class _RegisterPage extends State<RegisterPage> {
                       child: TextField(
                         controller: controller.nameC,
                         decoration: InputDecoration(
-                          hintText: "username",
+                          hintText: "Nama Lengkap Anda",
                           border:
                               OutlineInputBorder(borderSide: BorderSide.none),
                         ),

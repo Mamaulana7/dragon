@@ -44,9 +44,21 @@ class BaruController extends GetxController {
     isLoadingdatabaru.value = false;
 
     try {
-      DocumentReference respons = firestore.collection("data").doc(namaC.text);
-      respons.set({
-        "Nama": namaC.text,
+      String uid = auth.currentUser!.uid;
+      //memanggil collection journal yang ada di collection student
+      CollectionReference<Map<String, dynamic>> dataCollection =
+          await firestore.collection("users").doc(uid).collection("datauser");
+      CollectionReference<Map<String, dynamic>> datasCollection =
+          await firestore.collection("datauser");
+
+      var uuiddata = Uuid().v1();
+
+      DocumentSnapshot<Map<String, dynamic>> query =
+          await firestore.collection("users").doc(uid).get();
+      await datasCollection.doc(uuiddata).set({
+        "dataid": uuiddata,
+        "user_id": uid,
+        "Nama": query.data()?['username'],
         "Dari": asalC.text,
         "Suhu": suhuC.text,
         "date": DateTime.now().toIso8601String(),

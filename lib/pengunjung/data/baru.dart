@@ -81,7 +81,7 @@ class _BaruPageState extends State<BaruPage> {
               controller: controller.namaC,
               textAlign: TextAlign.left,
               decoration: InputDecoration(
-                hintText: "Masukkan Nama",
+                hintText: "Nama Lengkap",
                 border: OutlineInputBorder(borderSide: BorderSide.none),
               ),
             ),

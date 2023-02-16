@@ -17,13 +17,42 @@ class RiwayatController extends GetxController {
   //   return data.get();
   // }
 
-  Stream<QuerySnapshot<Object?>> StreamData() {
-    CollectionReference data = firestore.collection("data");
-    return data.snapshots();
+  Stream<DocumentSnapshot<Map<String, dynamic>>> streamUserData() async* {
+    String uid = auth.currentUser!.uid;
+    yield* firestore.collection("users").doc(uid).snapshots();
   }
 
-  void deleteData(String namaC) {
-    DocumentReference docRef = firestore.collection("data").doc(namaC);
+  Stream<QuerySnapshot<Map<String, dynamic>>> StreamData() async* {
+    String uid = auth.currentUser!.uid;
+    DocumentSnapshot<Map<String, dynamic>> user_query =
+        await firestore.collection("users").doc(uid).get();
+
+    if (user_query.data()?['role'] == "Pengunjung") {
+      yield* firestore
+          .collection("datauser")
+          .orderBy("date", descending: true)
+          .limitToLast(5)
+          .snapshots();
+    } else {
+      Get.defaultDialog(
+        title: "Terjadi kesalahan",
+        middleText: "Tidak dapat merubah data",
+        textConfirm: "Kembali",
+        onConfirm: () {
+          Get.back();
+        },
+      );
+      // yield* firestore
+      //     .collection("journals")
+      //     .where('user_id', isEqualTo: uid)
+      //     .orderBy("date", descending: true)
+      //     .limitToLast(5)
+      //     .snapshots();
+    }
+  }
+
+  void deleteData(String uid) {
+    DocumentReference docRef = firestore.collection("datauser").doc(uid);
     Get.defaultDialog(
       backgroundColor: Colors.white,
       title: "Hapus Data",

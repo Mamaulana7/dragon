@@ -17,7 +17,7 @@ class UbahController extends GetxController {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   Future<DocumentSnapshot<Object?>> dapatkanData(String nama) async {
-    DocumentReference data = firestore.collection("data").doc(nama);
+    DocumentReference data = firestore.collection("datauser").doc(nama);
     return data.get();
   }
 
@@ -43,8 +43,8 @@ class UbahController extends GetxController {
   //   }
   // }
 
-  void ubahdata(String Nama, String Dari, String Suhu, String docID) async {
-    DocumentReference doc = firestore.collection("data").doc(docID);
+  void ubahdata(String Nama, String Dari, String Suhu, String uid) async {
+    DocumentReference doc = firestore.collection("datauser").doc(uid);
     try {
       await doc.update({
         "Nama": namaC.text,

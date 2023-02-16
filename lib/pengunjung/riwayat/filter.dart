@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:ukk_revisi/routes/app_pages.dart';
 
 class riwayatstatus extends StatelessWidget {
   final Map<String, dynamic> riwayatstat;
@@ -8,6 +10,7 @@ class riwayatstatus extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      onTap: () => Get.toNamed(Routes.PERMINTAAN, arguments: riwayatstat),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

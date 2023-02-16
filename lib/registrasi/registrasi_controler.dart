@@ -42,7 +42,7 @@ class RegistrationController extends GetxController {
           await respondents.set({
             "id": uid,
             "email": emailC.text,
-            "usermame": nameC.text.trim(),
+            "username": nameC.text.trim(),
             "password": passC.text,
             "created_at": DateTime.now().toIso8601String(),
             "role": selectedValue.toString(),
