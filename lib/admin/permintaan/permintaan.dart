@@ -189,7 +189,7 @@ class _PermintaanPageState extends State<PermintaanPage> {
                                                 253, 20, 161, 243)),
                                         onPressed: () {
                                           if (controller.isLoading.isFalse) {
-                                            controller.tolak();
+                                            controller.actionTerima();
                                           }
                                         },
                                         child: Text(
@@ -215,7 +215,7 @@ class _PermintaanPageState extends State<PermintaanPage> {
                                               253, 20, 161, 243)),
                                       onPressed: () {
                                         if (controller.isLoading.isFalse) {
-                                          controller.terima();
+                                          controller.actionTolak();
                                         }
                                       },
                                       child: Text(

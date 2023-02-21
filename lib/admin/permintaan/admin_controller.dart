@@ -16,7 +16,6 @@ class AdminPermintaanController extends GetxController {
   // final Map<String, dynamic> statusData = Get.arguments;
   FirebaseAuth auth = FirebaseAuth.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-  TextEditingController terimaC = TextEditingController();
 
   Stream<QuerySnapshot<Object?>> Permintaan() {
     CollectionReference data = firestore.collection("datauser");
@@ -50,6 +49,12 @@ class AdminPermintaanController extends GetxController {
   //     );
   //   }
   // }
+  Future<void> actionTerima() async {
+    if (isLoadingTolak.isFalse) {
+      await terima();
+    }
+  }
+
   terima() async {
     isLoadingTolak.value = true;
     try {
@@ -63,7 +68,7 @@ class AdminPermintaanController extends GetxController {
       // buat uid di database baru
       var uuiddata = Uuid().v1();
 
-      await datasCollection.doc('data_id').update({"status": 1});
+      await datasCollection.doc('dataid').update({"status": 1});
       Get.back(); // Tutup Dialog
       CustomToast.successToast("Success", "Perjalanan Diperbolehkan");
       isLoadingTolak.value = false;
@@ -76,6 +81,12 @@ class AdminPermintaanController extends GetxController {
           Get.back();
         },
       );
+    }
+  }
+
+  Future<void> actionTolak() async {
+    if (isLoadingTolak.isFalse) {
+      await tolak();
     }
   }
 
@@ -92,7 +103,7 @@ class AdminPermintaanController extends GetxController {
       // buat uid di database baru
       var uuiddata = Uuid().v1();
 
-      await datasCollection.doc('data_id').update({"status": 2});
+      await datasCollection.doc('dataid').update({'status': 2});
       Get.back(); // Tutup Dialog
       CustomToast.successToast("Success", "Perjalanan Ditolak");
       isLoadingTolak.value = false;
